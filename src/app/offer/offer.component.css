@@ -1,0 +1,12 @@
+.imgCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+.roundDiv {
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+}

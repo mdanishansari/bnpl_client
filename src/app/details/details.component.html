@@ -1,0 +1,177 @@
+<app-progress-status progress="1" nextStep="offer calculation"></app-progress-status>
+<form [formGroup]="detailsForm" novalidate (ngSubmit)="onSubmit()" autocomplete="off">
+  <mat-card class="shipping-card mat-elevation-z0">
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="eg. John Doe" formControlName="firstName" autocomplete="off">
+            <mat-error *ngIf="detailsForm.controls['firstName'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="eg. John Doe" formControlName="lastName" autocomplete="off">
+            <mat-error *ngIf="detailsForm.controls['lastName'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput formControlName="mobile" maxLength="10" autocomplete="off">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="detailsForm.controls['mobile'].hasError('required')">
+              Mobile number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput #mobileInput [matDatepicker]="picker" formControlName="dob" autocomplete="off">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+            <mat-error *ngIf="detailsForm.controls['dob'].hasError('required')">
+              Date of Birth is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="eg abc@xyz.com" formControlName="email" autocomplete="off">
+            <mat-error *ngIf="detailsForm.controls['email'].hasError('required')">
+              Email id is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="detailsForm.controls['email'].hasError('email')">
+              <strong>Invalid</strong> email id
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option value="male">Male</mat-option>
+              <mat-option value="female">Female</mat-option>
+              <mat-option value="other">Others</mat-option>
+            </mat-select>
+            <mat-error *ngIf="detailsForm.controls['gender'].hasError('required')">
+              Gender selection is invalid
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Current Address</mat-label>
+            <input matInput formControlName="address" autocomplete="off">
+            <mat-error *ngIf="detailsForm.controls['address'].hasError('required')">
+              Address is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>PAN Number</mat-label>
+            <input matInput placeholder="eg AKXXX1235X" formControlName="pan" maxLength="10" autocomplete="off">
+            <mat-hint>PAN needed to verify name & dob</mat-hint>
+            <mat-error *ngIf="detailsForm.controls['pan'].hasError('required')">
+              Pan number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Aadhar No.</mat-label>
+            <input matInput placeholder="eg 123456789653" formControlName="aadhaar" maxLength="12" autocomplete="off">
+            <mat-error *ngIf="detailsForm.controls['aadhaar'].hasError('required')">
+              Aadhaar is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="eg Mumbai" formControlName="city" maxLength="12" autocomplete="off">
+            <mat-error *ngIf="detailsForm.controls['city'].hasError('required')">
+              City is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>State</mat-label>
+            <input matInput placeholder="eg Mumbai" formControlName="state" maxLength="12" autocomplete="off">
+            <mat-error *ngIf="detailsForm.controls['state'].hasError('required')">
+              State is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Pincode</mat-label>
+            <input matInput placeholder="eg Mumbai" formControlName="pincode" maxLength="6" autocomplete="off">
+            <mat-error *ngIf="detailsForm.controls['pincode'].hasError('required')">
+              Pincode is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col text-center tealFont">
+          <mat-label>Loan Amount</mat-label>
+        </div>
+        <div class="col text-center tealFont fw-bold">
+          Rs {{ matslider.value }}
+        </div>
+      </div> -->
+      <!-- <div class="row">
+        <div class="col ">
+          <mat-slider color="primary" class="full-width" [min]="min" [max]="max" [step]="step" [(value)]="value"
+            formControlName="amount" #matslider></mat-slider>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-1">
+          <mat-checkbox color="primary" formControlName="consent"></mat-checkbox>
+        </div>
+        <div class="col-11 smallText">
+          I acknowledge that I have read and agree to the
+          give my consent to fetch my details.
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="text-center row">
+      <button mat-raised-button color="primary" type="submit">Continue</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

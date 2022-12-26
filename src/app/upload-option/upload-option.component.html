@@ -1,0 +1,13 @@
+<br />
+<div class="text-center fw-bold">
+    Upload address proof
+</div>
+<br />
+<div class="text-center fw-bold">
+    Select a document that has your current residential address on it.
+</div>
+<mat-selection-list [multiple]="false" class="smallText">
+    <mat-list-option *ngFor="let doc of typesOfDoc" [value]="doc" (click)="selection(doc)">
+        <span style="font-size: small !important;">{{doc}}</span>
+    </mat-list-option>
+</mat-selection-list>

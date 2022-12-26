@@ -1,0 +1,15 @@
+.roundDiv {
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+}
+
+#fileUpload {
+    position: absolute;
+    z-index: 9;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+}

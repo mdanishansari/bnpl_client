@@ -1,0 +1,22 @@
+<app-progress-status progress="40" nextStep="document's"></app-progress-status>
+<br />
+<div class="text-center roundDiv">
+    <img src="assets/images/offer.png" alt="offer" class="imgCenter" />
+    <div>
+        <p class="card-text">Yay! you are eligible for <br />a credit line of <br /><b>&#8377; {{amount}}</b></p>
+        <div class="row">
+            <div class="col">
+                <p class="xsmallText">Credit Line Expiry</p>
+                <p class="fw-bold">{{creditMonths}} Months</p>
+            </div>
+            <div class="col">
+                <p class="xsmallText">Interest Free Days</p>
+                <p class="fw-bold">{{freeDays}} Days</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="text-center">
+    <button mat-raised-button color="primary" (click)="offerAccepted()">Accept Offer</button>
+</div>

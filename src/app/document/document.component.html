@@ -1,0 +1,58 @@
+<app-progress-status progress="60" nextStep="agreement"></app-progress-status>
+<br />
+<div class="row">
+    <div class="col text-center fw-bold">
+        We need some document's from you
+    </div>
+</div>
+<br />
+<div class="roundDiv p-2">
+    <div class="row smallText">
+        <span class="organgeFont col">{{status | uppercase}}</span>
+        <span class="tealFont col text-end">
+            <button mat-mini-fab color="primary" aria-label="openDoc" (click)="openDocOptions()">
+                <mat-icon>reorder</mat-icon>
+            </button>
+        </span>
+    </div>
+    <p class="smallText"><b>Residential Address Proof</b>
+        <br /><span class="xsmallText">
+            This can be your Aadhaar card,Voted ID,Driving Licence, etc.File should be less than
+            <b>10MB</b>
+        </span>
+    </p>
+    <div class="smallText row">
+        <div class="col">
+            Doc Type : <b>{{docType | uppercase}}</b>
+            <br />
+            Uploaded : <b>{{fileUploaded | uppercase}}</b>
+        </div>
+        <div class="col text-end">
+            <button mat-mini-fab for="files" color="primary" aria-label="uploadDoc" (click)="docfileInput.click()">
+                <mat-icon>cloud_upload</mat-icon>
+            </button>
+        </div>
+        <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button> -->
+        <input hidden #docfileInput  (change)="onDocFileSelected($event)" type="file" id="file">
+    </div>
+</div>
+<div class="roundDiv p-2 mt-1">
+    <div class="row smallText">
+        <span class="organgeFont col">{{status | uppercase}}</span>
+        <span class="tealFont col text-end">
+            <button mat-mini-fab color="primary" aria-label="uploadGST">
+                <mat-icon>cloud_upload</mat-icon>
+            </button>
+        </span>
+    </div>
+    <p class="smallText"><b>GST Certificate </b>
+        <br /><span class="xsmallText">
+            Upload you registered GST certificate.File should be less than
+            <b>10MB</b>
+        </span>
+    </p>
+</div>
+<br />
+<div class="text-center">
+    <button mat-raised-button color="primary">Continue</button>
+</div>

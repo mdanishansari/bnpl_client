@@ -1,0 +1,135 @@
+<div #confirm>
+    <div class="row">
+        <div class="col text-center fw-bold">
+            Confirm your details below
+        </div>
+    </div>
+    <br />
+    <div class="alert alert-danger text-center pt-0 pb-0" role="alert">
+        <p class="fw-bold whiteText mb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="red" class="bi bi-exclamation-circle"
+                viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path
+                    d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+            </svg>
+            Oops. we weren't able to fetch
+            bureau data for you
+        </p>
+        <p class="fw-bold blackText mb-0">Please verify and edit you details below if needed and tap on continue to
+            proceed
+        </p>
+    </div>
+    <form [formGroup]="cnfdetailsForm" novalidate (ngSubmit)="onSubmit()" autocomplete="off">
+        <mat-card class="shipping-card mat-elevation-z0">
+            <mat-card-content>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Full Name</mat-label>
+                            <input matInput placeholder="eg. John Doe" formControlName="fullName" autocomplete="off">
+                            <mat-error *ngIf="cnfdetailsForm.controls['fullName'].hasError('required')">
+                                Full name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Date of Birth</mat-label>
+                            <input matInput #mobileInput [matDatepicker]="picker" formControlName="dob"
+                                autocomplete="off">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi #picker></mat-datepicker>
+                            <mat-error *ngIf="cnfdetailsForm.controls['dob'].hasError('required')">
+                                Date of Birth is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Gender</mat-label>
+                            <mat-select formControlName="gender">
+                                <mat-option value="male">Male</mat-option>
+                                <mat-option value="female">Female</mat-option>
+                                <mat-option value="other">Others</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="cnfdetailsForm.controls['gender'].hasError('required')">
+                                Gender selection is invalid
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Current Address</mat-label>
+                            <input matInput formControlName="address" autocomplete="off">
+                            <mat-error *ngIf="cnfdetailsForm.controls['address'].hasError('required')">
+                                Address is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>PAN Number</mat-label>
+                            <input matInput placeholder="eg AKXXX1235X" formControlName="pan" maxLength="10"
+                                autocomplete="off">
+                            <mat-hint>PAN needed to verify name & dob</mat-hint>
+                            <mat-error *ngIf="cnfdetailsForm.controls['pan'].hasError('required')">
+                                Pan number is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions class="text-center">
+                <button mat-raised-button color="primary" type="submit">Continue</button>
+            </mat-card-actions>
+        </mat-card>
+        <br />
+    </form>
+</div>
+
+<div #waiting style="display: none;">
+    <div class="text-center">
+        <img src="assets/images/wait.png" alt="waiting" height="250" width="250">
+    </div>
+    <div class="text-center fw-bold waitText pt-0 pb-0">
+        <p>Wait a moment, while we are<br>calculating the best offer for you</p>
+    </div>
+    <br />
+    <div class="alert alert-warning text-center" role="alert">
+        <p class="fw-bold orangeText mb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="orange" class="bi bi-clock"
+                viewBox="0 0 16 16">
+                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+            </svg>
+            Please wait
+        </p>
+        <p class="fw-bold blackText mb-2">This usually takes about 2 minutes as we pull CIBIL data, based on your which
+            we
+            calculate your credit limt
+        </p>
+    </div>
+    <br /><br /><br />
+</div>
+<div #tryagain style="display: none;">
+    <div class="text-center">
+        <img src="assets/images/wait.png" alt="waiting" height="300" width="300">
+    </div>
+    <div class="text-center fw-bold waitText pt-0 pb-0">
+        <p>Looks like it's taking more time to<br>generate the best offer for you</p>
+    </div>
+    <br />
+    <div class="text-center">
+        <button mat-raised-button color="primary">Try Again</button>
+    </div>
+    <br /><br /><br /><br />
+</div>

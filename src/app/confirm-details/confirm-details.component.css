@@ -1,0 +1,46 @@
+.full-width {
+    width: 100%;
+}
+
+.shipping-card {
+    min-width: 120px;
+    margin: 20px auto;
+}
+
+.mat-radio-button {
+    display: block;
+    margin: 5px 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.col:last-child {
+    margin-right: 0;
+}
+
+.blackText {
+    color: black;
+    font-size: x-small;
+}
+
+.whiteText {
+    color: white;
+    font-size: x-small;
+}
+
+.orangeText {
+    color: orange;
+    font-size: x-small;
+}
+
+.waitText{
+    font-size: small;
+}
