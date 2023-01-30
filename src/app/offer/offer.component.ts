@@ -12,7 +12,7 @@ export class OfferComponent implements OnInit {
   freeDays: number = 0;
 
   constructor() { }
-
+  
   ngOnInit(): void {
   }
 

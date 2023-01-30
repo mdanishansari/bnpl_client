@@ -26,10 +26,21 @@
                 <div class="row">
                     <div class="col">
                         <mat-form-field class="full-width" appearance="outline">
-                            <mat-label>Full Name</mat-label>
-                            <input matInput placeholder="eg. John Doe" formControlName="fullName" autocomplete="off">
-                            <mat-error *ngIf="cnfdetailsForm.controls['fullName'].hasError('required')">
-                                Full name is <strong>required</strong>
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="eg. John Doe" formControlName="firstName" autocomplete="off">
+                            <mat-error *ngIf="cnfdetailsForm.controls['firstName'].hasError('required')">
+                                First name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="eg. Doe" formControlName="lastName" autocomplete="off">
+                            <mat-error *ngIf="cnfdetailsForm.controls['lastName'].hasError('required')">
+                                Last name is <strong>required</strong>
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -53,9 +64,9 @@
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Gender</mat-label>
                             <mat-select formControlName="gender">
-                                <mat-option value="male">Male</mat-option>
-                                <mat-option value="female">Female</mat-option>
-                                <mat-option value="other">Others</mat-option>
+                                <mat-option value="Male">Male</mat-option>
+                                <mat-option value="Female">Female</mat-option>
+                                <mat-option value="Other">Others</mat-option>
                             </mat-select>
                             <mat-error *ngIf="cnfdetailsForm.controls['gender'].hasError('required')">
                                 Gender selection is invalid
@@ -88,15 +99,19 @@
                     </div>
                 </div>
             </mat-card-content>
-            <mat-card-actions class="text-center">
-                <button mat-raised-button color="primary" type="submit">Continue</button>
+            <mat-card-actions class="text-center row">
+                <button mat-raised-button color="primary" type="submit" [disabled]="isloading">
+                    <span *ngIf="isloading"><i class="spinner-border spinner-border-sm mr-1"></i>&nbsp; Please
+                        wait...</span>
+                    <span *ngIf="!isloading">Continue</span>
+                </button>
             </mat-card-actions>
         </mat-card>
         <br />
     </form>
 </div>
 
-<div #waiting style="display: none;">
+<!-- <div #waiting>
     <div class="text-center">
         <img src="assets/images/wait.png" alt="waiting" height="250" width="250">
     </div>
@@ -120,7 +135,8 @@
     </div>
     <br /><br /><br />
 </div>
-<div #tryagain style="display: none;">
+
+<div #tryagain>
     <div class="text-center">
         <img src="assets/images/wait.png" alt="waiting" height="300" width="300">
     </div>
@@ -132,4 +148,4 @@
         <button mat-raised-button color="primary">Try Again</button>
     </div>
     <br /><br /><br /><br />
-</div>
+</div> -->

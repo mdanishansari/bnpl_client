@@ -16,7 +16,6 @@ export class JwtAuthHeaderInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const currentUser = this.authenticationService.currentUserValue;
-        console.log('currentUser',currentUser)
         if (currentUser !== null) {
             const token = currentUser.token;
             const tokentype = currentUser.tokenType;

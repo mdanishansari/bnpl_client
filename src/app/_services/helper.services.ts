@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 
@@ -10,7 +11,8 @@ export class HelperService {
 
     constructor(
         private _router: Router,
-        private toastr: ToastrService,
+        private _toastr: ToastrService,
+        private _snackBar: MatSnackBar
     ) { }
 
     changeRouter(path: string) {
@@ -18,25 +20,31 @@ export class HelperService {
     }
 
     warnToaster(message: string) {
-        this.toastr.warning(message, 'Warning', {
+        this._toastr.warning(message, 'Warning', {
             progressBar: true
         })
     }
 
     successToaster(message: string) {
-        this.toastr.success(message, 'Success', {
+        this._toastr.success(message, 'Success', {
             progressBar: true
         })
     }
 
     errorToaster(message: string) {
-        this.toastr.error(message, 'Error', {
+        this._toastr.error(message, 'Error', {
             progressBar: true
         })
     }
 
     clearToaster() {
-        this.toastr.clear();
+        this._toastr.clear();
+    }
+
+    showSnackBar(message: string, action: string, duration: number) {
+        this._snackBar.open(message, action, {
+            duration: duration * 1000
+        })
     }
 
 }

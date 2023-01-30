@@ -8,7 +8,8 @@
 <br />
 <div class="roundDiv p-2">
     <div class="row smallText">
-        <span class="organgeFont col">{{status | uppercase}}</span>
+        <span class="col fw-bold" [ngClass]="docStatus == 'pending' ? 'organgeFont' : 'tealFont'">{{docStatus |
+            uppercase}}</span>
         <span class="tealFont col text-end">
             <button mat-mini-fab color="primary" aria-label="openDoc" (click)="openDocOptions()">
                 <mat-icon>reorder</mat-icon>
@@ -25,25 +26,26 @@
         <div class="col">
             Doc Type : <b>{{docType | uppercase}}</b>
             <br />
-            Uploaded : <b>{{fileUploaded | uppercase}}</b>
+            <!-- Uploaded : <b>{{fileUploaded | uppercase}}</b> -->
         </div>
         <div class="col text-end">
             <button mat-mini-fab for="files" color="primary" aria-label="uploadDoc" (click)="docfileInput.click()">
                 <mat-icon>cloud_upload</mat-icon>
             </button>
         </div>
-        <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button> -->
-        <input hidden #docfileInput  (change)="onDocFileSelected($event)" type="file" id="file">
+        <input hidden #docfileInput (change)="onDocFileSelected($event,'residential')" type="file" id="file">
     </div>
 </div>
 <div class="roundDiv p-2 mt-1">
     <div class="row smallText">
-        <span class="organgeFont col">{{status | uppercase}}</span>
-        <span class="tealFont col text-end">
-            <button mat-mini-fab color="primary" aria-label="uploadGST">
+        <span class="col fw-bold" [ngClass]="gstStatus=='pending' ? 'organgeFont' : 'tealFont'">{{gstStatus |
+            uppercase}}</span>
+        <span class=" tealFont col text-end">
+            <button mat-mini-fab for="files" color="primary" aria-label="uploadGST" (click)="gstfileInput.click()">
                 <mat-icon>cloud_upload</mat-icon>
             </button>
         </span>
+        <input hidden #gstfileInput (change)="onDocFileSelected($event,'gst')" type="file" id="file">
     </div>
     <p class="smallText"><b>GST Certificate </b>
         <br /><span class="xsmallText">
@@ -53,6 +55,11 @@
     </p>
 </div>
 <br />
-<div class="text-center">
-    <button mat-raised-button color="primary">Continue</button>
+<div class="text-center container">
+    <div class="row">
+        <button mat-raised-button color="primary" [disabled]="isLoading" (click)="docUploaded()">
+            <span *ngIf=" isLoading">Upload Both files</span>
+            <span *ngIf="!isLoading">Continue</span>
+        </button>
+    </div>
 </div>

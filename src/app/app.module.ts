@@ -23,6 +23,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ProgressStatusComponent } from './progress-status/progress-status.component';
@@ -37,6 +38,8 @@ import { AgreementComponent } from './agreement/agreement.component';
 import { ToastrModule } from 'ngx-toastr';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { JwtAuthHeaderInterceptor } from './_services/jwt-auth-header.interceptor';
+import { OtpComponent } from './otp/otp.component';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { JwtAuthHeaderInterceptor } from './_services/jwt-auth-header.intercepto
     UploadOptionComponent,
     ReviewingComponent,
     AgreementComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    OtpComponent
   ],
   imports: [
     BrowserModule,
@@ -73,9 +77,11 @@ import { JwtAuthHeaderInterceptor } from './_services/jwt-auth-header.intercepto
     MatCheckboxModule,
     MatSnackBarModule,
     MatSliderModule,
+    MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgOtpInputModule,
     ToastrModule.forRoot({ positionClass: 'toast-top-center' }),
   ],
   providers: [

@@ -6,7 +6,7 @@
   </mat-toolbar>
   <br />
   <mat-card class="mat-elevation-z0 top-curve">
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
   </mat-card>
   <div class="footer" #footer>
     Powerd By <img src="assets/images/flexiloans.svg" alt="flexiloans" width="60" height="40" />

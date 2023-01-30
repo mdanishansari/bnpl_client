@@ -17,6 +17,7 @@ export class DetailsComponent {
   min: number = 0;
   step: number = 1000;
   value: number | null = 0;
+  isloading: boolean = false;
 
   detailsForm = this.fb.group({
     firstName: [null, Validators.required],
@@ -37,53 +38,58 @@ export class DetailsComponent {
 
   constructor(
     private fb: FormBuilder,
-    private _helper: HelperService,
+    private helperService: HelperService,
     private retailerService: RetailerService
   ) { }
 
   onSubmit(): void {
-    this.checkFormValidation();
-    var formvalues = this.detailsForm.value;
-    if (!this.detailsForm.invalid) {
-      var retailerDetails: RetailerDetails = {
-        firstName: formvalues.firstName || "",
-        lastName: formvalues.lastName || "",
-        mobile: formvalues.mobile || 0,
-        dob: formvalues.dob || new Date,
-        email: formvalues.email || "",
-        gender: formvalues.gender || "",
-        address: formvalues.address || "",
-        pan: formvalues.pan || "",
-        aadhaar: formvalues.aadhaar || "",
-        city: formvalues.city || "",
-        state: formvalues.state || "",
-        pincode: formvalues.pincode || 0,
-        // amount: formvalues.amount || 0,
-        consent: formvalues.consent || false
+    var valid = this.checkFormValidation();
+    if (valid) {
+
+      this.isloading = true;
+      var formvalues = this.detailsForm.value;
+      if (!this.detailsForm.invalid) {
+        var retailerDetails: RetailerDetails = {
+          firstName: formvalues.firstName || "",
+          lastName: formvalues.lastName || "",
+          mobile: formvalues.mobile || 0,
+          dob: formvalues.dob || new Date,
+          email: formvalues.email || "",
+          gender: formvalues.gender || "",
+          address: formvalues.address || "",
+          pan: formvalues.pan || "",
+          aadhaar: formvalues.aadhaar || "",
+          city: formvalues.city || "",
+          state: formvalues.state || "",
+          pincode: formvalues.pincode || 0,
+          consent: formvalues.consent || false
+        }
+        this.retailerService.createRetailerDetails(retailerDetails)
+          .subscribe(res => {
+            if (res.success && res.status != null) {
+              this.isloading = false;
+              this.helperService.changeRouter(res.status)
+            }
+          })
       }
-      this.retailerService.createRetailerDetails(retailerDetails)
-        .subscribe(res => {
-          console.log('res', res);
-        })
-      // this._helper.changeRouter('confirm-details');
     }
   }
 
   checkFormValidation() {
     let message = null;
-    // var amount = parseInt(this.detailsForm.controls['amount'].value || '0');
+    var result = true;
     if (!this.detailsForm.controls['consent'].value) {
       message = "User consent is required";
     }
-    // else if (amount == null || amount <= 0) {
-    //   message = "Loan amount cannot be 0";
-    // }
     else if (this.detailsForm.invalid) {
       message = "Add required details";
     }
 
     if (message !== null) {
-      this._helper.warnToaster(message || "");
+      this.helperService.warnToaster(message || "");
+      return result = false;
     }
+    return result;
   }
 }
+

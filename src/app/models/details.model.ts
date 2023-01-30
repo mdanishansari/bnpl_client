@@ -14,3 +14,14 @@ export interface RetailerDetails {
     // amount: number,
     consent: boolean
 }
+
+export interface ConfirmRetailerDetails {
+    firstName: string,
+    lastName: string,
+    dob: Date,
+    gender: string,
+    address: string,
+    pan: string,
+    leadCode: string,
+    loanCode: string
+}

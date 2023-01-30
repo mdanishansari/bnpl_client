@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.services';
+import { HelperService } from '../_services/helper.services';
 
 @Component({
   selector: 'app-load',
@@ -14,7 +15,7 @@ export class LoadComponent implements OnInit {
   retailerId: number = 0;
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private _helperService: HelperService,
     private authenticationService: AuthenticationService,
   ) { }
 
@@ -29,7 +30,9 @@ export class LoadComponent implements OnInit {
       this.authenticationService.login(this.retailerId)
         .subscribe(res => {
           if (res.status) {
-            this.router.navigate([res.status]);
+            setTimeout(() => {
+              this._helperService.changeRouter(res.status);
+            }, 2000)
           }
         })
     }

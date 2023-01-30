@@ -27,8 +27,23 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
+    updateCurrentUser(loanCode: string, leadCode: string) {
+        var retailer = JSON.parse(localStorage.getItem('currentUser') || '{}')
+        retailer['loanCode'] = loanCode;
+        retailer['leadCode'] = leadCode;
+        localStorage.setItem('currentUser', JSON.stringify(retailer));
+        this.currentUserSubject.next(retailer);
+    }
+
+    updateCurrentUserstatus(status: string) {
+        var retailer = JSON.parse(localStorage.getItem('currentUser') || '{}')
+        retailer['status'] = status;
+        localStorage.setItem('currentUser', JSON.stringify(retailer));
+        this.currentUserSubject.next(retailer);
+    }
+
     login(retailerId: number) {
-        var url = this.baseUrl + "api/v2/auth/autologin";
+        var url = this.baseUrl + "api/v1/auth/autologin";
         var body = {
             retailerId: retailerId
         }
@@ -41,7 +56,9 @@ export class AuthenticationService {
                             token: responseBody.token,
                             tokenType: responseBody.tokenType,
                             isAuth: responseBody.isAuth,
-                            status: responseBody.status
+                            status: responseBody.status,
+                            loanCode: "",
+                            leadCode: ""
                         }
                         localStorage.setItem('currentUser', JSON.stringify(retailer));
                         this.currentUserSubject.next(retailer);
@@ -58,4 +75,6 @@ export interface ResponseUser {
     tokenType: string;
     isAuth: boolean;
     status: string;
+    loanCode: string,
+    leadCode: string
 }
